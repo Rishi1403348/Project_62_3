@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Personal Website</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="#">{{ name }}</a>
+        </div>
+        <ul class="navbar-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to {{ name }}'s Personal Website</h1>
+        <p>AI & Data Science Enthusiast | Project Lead | Innovator</p>
+        <a href="{{ resume_link }}" class="button" download>Download Resume</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section fade-in">
+        <h2>About Me</h2>
+        <p>I am a dedicated AI and Data Science student at {{ university }}, passionate about innovation and technology. As Head of Internal and External Council, I bring leadership and expertise in managing tech-driven projects.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section fade-in">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            {% for project in projects %}
+                <div class="project-card">
+                    <h3>{{ project.title }}</h3>
+                    <p><strong>Date:</strong> {{ project.date }}</p>
+                    <p>{{ project.description }}</p>
+                    <p><strong>Technologies Used:</strong> {{ project.technologies|join:", " }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Skills Section with Animated Bars -->
+    <section id="skills" class="section fade-in">
+        <h2>Skills</h2>
+        <div class="skills-chart">
+            {% for skill in skills %}
+                <div class="skill">
+                    <p>{{ skill.name }} <span class="skill-level">{{ skill.level }}%</span></p>
+                    <div class="skill-bar" style="width: {{ skill.level }}%;"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section fade-in">
+        <h2>Testimonials</h2>
+        <div class="testimonials-container">
+            {% for testimonial in testimonials %}
+                <div class="testimonial-card">
+                    <p>"{{ testimonial.feedback }}"</p>
+                    <h4>- {{ testimonial.name }}, {{ testimonial.relationship }}</h4>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section fade-in">
+        <h2>Blog</h2>
+        <div class="blog-posts">
+            {% for blog in blogs %}
+                <div class="blog-card">
+                    <h3><a href="{{ blog.link }}">{{ blog.title }}</a></h3>
+                    <p>{{ blog.description }}</p>
+                    <small>{{ blog.date }}</small>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section fade-in">
+        <h2>Achievements</h2>
+        <ul class="achievements-list">
+            {% for achievement in achievements %}
+                <li>{{ achievement }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section fade-in">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:{{ email }}">{{ email }}</a></p>
+        <p>LinkedIn: <a href="{{ linkedin }}" target="_blank">LinkedIn Profile</a></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 {{ name }}. All rights reserved.</p>
+    </footer>
+</body>
+</html>
