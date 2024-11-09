@@ -62,7 +62,6 @@ DATABASES = {
     }
 }
 
-# Static files settings
 STATIC_URL = '/static/'
 
 # Where to store static files when deploying
@@ -70,6 +69,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Update STATICFILES_DIRS to point to the 'static' directory in 'portfolio'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'portfolio', 'static')]
+
 
 # Media files settings (optional, if you’re using uploaded files)
 MEDIA_URL = '/media/'
