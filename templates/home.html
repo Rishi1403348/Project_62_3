@@ -4,14 +4,180 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ personal_info.name }} - Personal Website</title> <!-- Updated title to use context -->
-    <link rel="stylesheet" href="{% static 'portfolio/style.css' %}">  <!-- Updated path -->
+    <title>{{ personal_info.name }} - Personal Website</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            background-color: #f4f6f9;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #007bff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-logo a {
+            color: white;
+            font-size: 1.5em;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar-links {
+            list-style-type: none;
+        }
+
+        .navbar-links li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            color: #ffdd57;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #007bff, #6a9bf7);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin: 10px 0 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .button {
+            padding: 12px 25px;
+            background-color: #ffdd57;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ffd33a;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #f7f7f7;
+            border-top: 4px solid #007bff;
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .projects-container, .testimonials-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .project-card, .testimonial-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover, .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #fff;
+            background-color: #333;
+        }
+
+        /* Social Media Icons */
+        .social-media-icons {
+            margin-top: 15px;
+        }
+
+        .social-media-icons a {
+            margin: 0 10px;
+            color: #ffdd57;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .social-media-icons a:hover {
+            color: #ffd33a;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-logo">
-            <a href="#">{{ personal_info.name }}</a> <!-- Use personal_info from context -->
+            <a href="#">{{ personal_info.name }}</a>
         </div>
         <ul class="navbar-links">
             <li><a href="#about">About</a></li>
@@ -27,92 +193,93 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Welcome to {{ personal_info.name }}'s Personal Website</h1> <!-- Updated to use context -->
+        <h1>Welcome to {{ personal_info.name }}'s Personal Website</h1>
         <p>{{ personal_info.role }} | {{ personal_info.course }} | {{ personal_info.university }}</p>
-        <a href="{{ personal_info.resume_link }}" class="button" download>Download Resume</a> <!-- Use dynamic resume link -->
+        <a href="{{ personal_info.resume_link }}" class="button" download>Download Resume</a>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section fade-in">
+    <section id="about" class="section">
         <h2>About Me</h2>
-        <p>I am a dedicated AI and Data Science student at {{ personal_info.university }}, passionate about innovation and technology. As Head of Internal and External Council, I bring leadership and expertise in managing tech-driven projects.</p>
+        <p>Hi, I’m {{ personal_info.name }}. I am passionate about technology and development. Currently studying {{ personal_info.course }} at {{ personal_info.university }}.</p>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section fade-in">
+    <section id="projects" class="section">
         <h2>Projects</h2>
+        <p>Here are some of the projects I've worked on:</p>
         <div class="projects-container">
-            {% for project in personal_info.projects %}
-                <div class="project-card">
-                    <h3>{{ project.title }}</h3>
-                    <p><strong>Date:</strong> {{ project.date }}</p>
-                    <p>{{ project.description }}</p>
-                    <p><strong>Technologies Used:</strong> {{ project.technologies|join:", " }}</p>
-                </div>
-            {% endfor %}
+            <div class="project-card">
+                <h3>Project 1</h3>
+                <p>Description of the project and key features.</p>
+            </div>
+            <div class="project-card">
+                <h3>Project 2</h3>
+                <p>Description of the project and key features.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Skills Section with Animated Bars -->
-    <section id="skills" class="section fade-in">
+    <!-- Skills Section -->
+    <section id="skills" class="section">
         <h2>Skills</h2>
-        <div class="skills-chart">
-            {% for skill in personal_info.skills %}
-                <div class="skill">
-                    <p>{{ skill.name }} <span class="skill-level">{{ skill.level }}%</span></p>
-                    <div class="skill-bar" style="width: {{ skill.level }}%;"></div>
-                </div>
-            {% endfor %}
-        </div>
+        <p>Some of the skills I possess:</p>
+        <ul>
+            <li>Python</li>
+            <li>Java</li>
+            <li>Web Development</li>
+            <li>Data Science</li>
+        </ul>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section">
+        <h2>Certifications</h2>
+        <p>Some of my certifications:</p>
+        <ul>
+            <li>Certification 1</li>
+            <li>Certification 2</li>
+        </ul>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="section fade-in">
+    <section id="testimonials" class="section">
         <h2>Testimonials</h2>
+        <p>What people say about me:</p>
         <div class="testimonials-container">
-            {% for testimonial in personal_info.testimonials %}
-                <div class="testimonial-card">
-                    <p>"{{ testimonial.feedback }}"</p>
-                    <h4>- {{ testimonial.name }}, {{ testimonial.relationship }}</h4>
-                </div>
-            {% endfor %}
+            <div class="testimonial-card">
+                <blockquote>"Excellent work on the recent project!"</blockquote>
+                <p>- Client 1</p>
+            </div>
+            <div class="testimonial-card">
+                <blockquote>"Great problem-solving skills and team player."</blockquote>
+                <p>- Colleague</p>
+            </div>
         </div>
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="section fade-in">
+    <section id="blog" class="section">
         <h2>Blog</h2>
-        <div class="blog-posts">
-            {% for blog in personal_info.blogs %}
-                <div class="blog-card">
-                    <h3><a href="{{ blog.link }}">{{ blog.title }}</a></h3>
-                    <p>{{ blog.description }}</p>
-                    <small>{{ blog.date }}</small>
-                </div>
-            {% endfor %}
-        </div>
+        <p>Latest articles:</p>
+        <article>
+            <h3>Blog Post 1</h3>
+            <p>Summary of the blog post content.</p>
+        </article>
     </section>
 
     <!-- Achievements Section -->
-    <section id="achievements" class="section fade-in">
+    <section id="achievements" class="section">
         <h2>Achievements</h2>
-        <ul class="achievements-list">
-            {% for achievement in personal_info.achievements %}
-                <li>{{ achievement }}</li>
-            {% endfor %}
+        <p>My recent achievements:</p>
+        <ul>
+            <li>Won XYZ award</li>
+            <li>Published paper on ABC</li>
         </ul>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section fade-in">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:{{ personal_info.email }}">{{ personal_info.email }}</a></p> <!-- Use context -->
-        <p>LinkedIn: <a href="{{ personal_info.linkedin }}" target="_blank">LinkedIn Profile</a></p> <!-- Use context -->
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 {{ personal_info.name }}. All rights reserved.</p> <!-- Use context -->
-    </footer>
-</body>
-</html>
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Feel free to reach out:</p>
+        <p>Email: <a href="mailto:{{ personal_info.email }}">{{ personal_info.email
