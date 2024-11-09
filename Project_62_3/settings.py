@@ -68,7 +68,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Update STATICFILES_DIRS to point to the 'static' directory in 'portfolio'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'portfolio', 'static')]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
 
 
 # Media files settings (optional, if you’re using uploaded files)
