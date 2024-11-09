@@ -4,14 +4,14 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ name }} - Personal Website</title>
+    <title>{{ personal_info.name }} - Personal Website</title> <!-- Updated title to use context -->
     <link rel="stylesheet" href="{% static 'portfolio/style.css' %}">  <!-- Updated path -->
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-logo">
-            <a href="#">{{ name }}</a>
+            <a href="#">{{ personal_info.name }}</a> <!-- Use personal_info from context -->
         </div>
         <ul class="navbar-links">
             <li><a href="#about">About</a></li>
@@ -27,22 +27,22 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Welcome to {{ name }}'s Personal Website</h1>
-        <p>AI & Data Science Enthusiast | Project Lead | Innovator</p>
-        <a href="{{ resume_link }}" class="button" download>Download Resume</a>
+        <h1>Welcome to {{ personal_info.name }}'s Personal Website</h1> <!-- Updated to use context -->
+        <p>{{ personal_info.role }} | {{ personal_info.course }} | {{ personal_info.university }}</p>
+        <a href="{{ personal_info.resume_link }}" class="button" download>Download Resume</a> <!-- Use dynamic resume link -->
     </section>
 
     <!-- About Section -->
     <section id="about" class="section fade-in">
         <h2>About Me</h2>
-        <p>I am a dedicated AI and Data Science student at {{ university }}, passionate about innovation and technology. As Head of Internal and External Council, I bring leadership and expertise in managing tech-driven projects.</p>
+        <p>I am a dedicated AI and Data Science student at {{ personal_info.university }}, passionate about innovation and technology. As Head of Internal and External Council, I bring leadership and expertise in managing tech-driven projects.</p>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="section fade-in">
         <h2>Projects</h2>
         <div class="projects-container">
-            {% for project in projects %}
+            {% for project in personal_info.projects %}
                 <div class="project-card">
                     <h3>{{ project.title }}</h3>
                     <p><strong>Date:</strong> {{ project.date }}</p>
@@ -57,7 +57,7 @@
     <section id="skills" class="section fade-in">
         <h2>Skills</h2>
         <div class="skills-chart">
-            {% for skill in skills %}
+            {% for skill in personal_info.skills %}
                 <div class="skill">
                     <p>{{ skill.name }} <span class="skill-level">{{ skill.level }}%</span></p>
                     <div class="skill-bar" style="width: {{ skill.level }}%;"></div>
@@ -70,7 +70,7 @@
     <section id="testimonials" class="section fade-in">
         <h2>Testimonials</h2>
         <div class="testimonials-container">
-            {% for testimonial in testimonials %}
+            {% for testimonial in personal_info.testimonials %}
                 <div class="testimonial-card">
                     <p>"{{ testimonial.feedback }}"</p>
                     <h4>- {{ testimonial.name }}, {{ testimonial.relationship }}</h4>
@@ -83,7 +83,7 @@
     <section id="blog" class="section fade-in">
         <h2>Blog</h2>
         <div class="blog-posts">
-            {% for blog in blogs %}
+            {% for blog in personal_info.blogs %}
                 <div class="blog-card">
                     <h3><a href="{{ blog.link }}">{{ blog.title }}</a></h3>
                     <p>{{ blog.description }}</p>
@@ -97,7 +97,7 @@
     <section id="achievements" class="section fade-in">
         <h2>Achievements</h2>
         <ul class="achievements-list">
-            {% for achievement in achievements %}
+            {% for achievement in personal_info.achievements %}
                 <li>{{ achievement }}</li>
             {% endfor %}
         </ul>
@@ -106,13 +106,13 @@
     <!-- Contact Section -->
     <section id="contact" class="section fade-in">
         <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:{{ email }}">{{ email }}</a></p>
-        <p>LinkedIn: <a href="{{ linkedin }}" target="_blank">LinkedIn Profile</a></p>
+        <p>Email: <a href="mailto:{{ personal_info.email }}">{{ personal_info.email }}</a></p> <!-- Use context -->
+        <p>LinkedIn: <a href="{{ personal_info.linkedin }}" target="_blank">LinkedIn Profile</a></p> <!-- Use context -->
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 {{ name }}. All rights reserved.</p>
+        <p>&copy; 2024 {{ personal_info.name }}. All rights reserved.</p> <!-- Use context -->
     </footer>
 </body>
 </html>

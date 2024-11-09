@@ -93,3 +93,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Additional settings you may need to update or add:
+# Internationalization settings
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+
+# Locale paths
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
+# Enable CSRF protection (which is by default enabled)
+CSRF_COOKIE_SECURE = False  # Change to True in production
+
+# Session settings
+SESSION_COOKIE_SECURE = False  # Change to True in production
+

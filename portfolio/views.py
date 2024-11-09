@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 def home(request):
+    # Personal info dictionary with all relevant data
     personal_info = {
         'name': "Rishi Noule",
         'role': "Head of Internal and External Council",
@@ -9,7 +10,7 @@ def home(request):
         'email': "rishi.noule@example.com",
         'phone': "+91-XXXXXXXXXX",
         'linkedin': "https://www.linkedin.com/in/rishinoule",
-        'resume_link': "/static/resume.pdf",
+        'resume_link': "/static/resume.pdf",  # You may need to adjust this to a dynamic link if needed
         'projects': [
             {
                 'title': "Scanning ECG Through Mobile Camera Using RPM",
@@ -73,4 +74,6 @@ def home(request):
             },
         ]
     }
-    return render(request, 'home.html', personal_info)
+
+    # Pass the dictionary as context to the template
+    return render(request, 'home.html', {'personal_info': personal_info})
