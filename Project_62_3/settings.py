@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security settings
 SECRET_KEY = 'your-secret-key'  # Replace with your actual secret key
 DEBUG = True  # Set to False in production
-ALLOWED_HOSTS =  ['project-62-3.onrender.com', '127.0.0.1', 'localhost']  # Allowed hosts for production and development
+ALLOWED_HOSTS = ['127.0.0.1', 'project-62-3.onrender.com']  # Allowed hosts for production and development
 
 # Installed apps including your app 'portfolio'
 INSTALLED_APPS = [
@@ -64,8 +64,13 @@ DATABASES = {
 
 # Static files settings
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Add if you have static files in a specific directory
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For production deployment
+
+# Where to store static files when deploying
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# This is your app's static directory
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'portfolio', 'static')]  # Change this if you have other static directories
+
 
 # Media files settings (optional, if you’re using uploaded files)
 MEDIA_URL = '/media/'
