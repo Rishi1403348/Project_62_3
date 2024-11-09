@@ -14,6 +14,34 @@ body {
     scroll-behavior: smooth;
 }
 
+/* Preloader Styles */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f6f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Navbar Styling */
 .navbar {
     display: flex;
@@ -136,7 +164,7 @@ body {
 }
 
 /* Project Cards */
-.project-card, .achievements-list li {
+.project-card {
     background-color: white;
     padding: 20px;
     margin: 10px 0;
@@ -148,7 +176,7 @@ body {
     overflow: hidden;
 }
 
-.project-card:hover, .achievements-list li:hover {
+.project-card:hover {
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
 }
@@ -158,23 +186,6 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-}
-
-/* Project Image Overlay */
-.project-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.project-card:hover::before {
-    opacity: 1;
 }
 
 /* Contact Links */
@@ -227,16 +238,4 @@ footer {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.05); }
-}
-
-@keyframes slide-in-left {
-    0% { transform: translateX(-100%); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes link-hover {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.1); color: #ffdd57; }
-}
+    0% { transform: scale(1);
